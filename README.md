@@ -1,39 +1,70 @@
 # Multithreading-primenumbersMultithreading-primenumbers
-Write a multithreaded program in C that outputs prime numbers. This program should work as follows: The user will run the program and will enter a number on the command line. The program will then create a separate thread that outputs all the prime numbers less than or equal to the number entered by the user. 
+3)Write a multithreaded program in C that outputs prime numbers. This program should work as follows: The user will run the program and will enter a number on the command line. The program will then create a separate thread that outputs all the prime numbers less than or equal to the number entered by the user. 
 
 Code: 
-3)
+
 #include <pthread.h>
+
 #include <stdio.h>
+
 #include <stdlib.h>
+
 void *prime(void *x);
+
 int main() {
+
 int x;	
+
 scanf("%d",&x);
-pthread_t tid; 
+
+pthread_t tid;
+
 pthread_attr_t attr;
+
 printf("Prime Numbers:\n");
+
 pthread_attr_init(&attr);
+
 pthread_create(&tid,&attr,prime,&x);
+
 pthread_join(tid,NULL);
+
 }
+
 void *prime(void *x) {
+
   int i,j,end = *(int *)x;
+  
 for(i = 2; i < end; i++) {
+
 int ans = 0;
+
 for(j = 2; j < i; j++) {
+
          int result = i % j;
+         
 if(result == 0) {
+
 ans = 1;
+
 break;
+
 }
+
 }
+
 if(ans == 0) {
+
 printf("%d\n", i);
+
 }
+
     }
+    
  pthread_exit(0);
+ 
 }
+
 
 In terms of Operating system concept:-
 In this programe i've got created multi thread.
